@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect 4</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> 
+
+  <link href="connect4.css" rel="stylesheet">
+</head>
+
+<body>
+  <h1>CONNECT FOUR</h1>
+  <div id="rules">
+    <p> Connect Four is played on a grid, you can choose how wide and deep it will be, with two players, 1 (red) and 2 (blue). The players alternate turns, dropping a piece of their color in the top of a column. The piece will fall down to the further-down unoccupied slot. The game is won when a player makes four in a row (horizontally, vertically, or diagonally). The game is a tie if the entire board fills up without a winner. Good luck!</p>
+  </div>
+  <section id="navbar">
+    <label class="input-font" for="width">Enter WIDTH: </label>
+    <input id="width" type="number" placeholder="7" value="7" max="20" min="4">
+    <label class="input-font" for="height">Enter HEIGHT: </label>
+    <input id="height" type="number" placeholder="6" value="6" max="10" min="4"><br>
+    <button id="new-game">Start a game</button>
+  </section>
+  <div id="game">
+    <table id="board"></table>
+  </div>
+  <p id="end-of-game"></p>
+  <script src="connect4.js"></script>
+</body>
+</html>
+
+
