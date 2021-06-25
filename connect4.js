@@ -9,6 +9,7 @@ let WIDTH;
 let HEIGHT;
 let currPlayer = 1; // active player: 1 or 2
 let board = [];
+let gameIsOn;
 
 const startBtn = document.getElementById("new-game");
 
@@ -16,6 +17,7 @@ const startBtn = document.getElementById("new-game");
 // board = array of rows, each row is array of cells  (board[y][x])
 
 function makeBoard() {
+  gameIsOn = true;
   WIDTH = +(document.getElementById("width").value);
   HEIGHT = +(document.getElementById("height").value);
   const boardArr = [];
@@ -79,6 +81,7 @@ function placeInTable(y, x) {
 /** endGame: announce game end */
 
 function endGame(msg) {
+  gameIsOn = false;
   const endMessage = document.getElementById("end-of-game");
   endMessage.innerHTML = msg;
   endMessage.style.visibility = "visible";
@@ -93,11 +96,15 @@ function endGame(msg) {
 //function to check for tie
 const checkForTie = () => board[0].every((x) => x!==null);
 
+//function to switch players
+function switchPlayers() {
+  currPlayer = currPlayer === 1 ? 2 : 1; 
+}
 
 function handleClick(evt) {
-
-      let x = +(evt.target.id); // get x from ID of clicked cell and convert into a number
-      let y = findSpotForCol(x); // get next spot in column (if none, ignore click):
+  if (!gameIsOn) return;
+      const x = +(evt.target.id); // get x from ID of clicked cell and convert into a number
+      const y = findSpotForCol(x); // get next spot in column (if none, ignore click):
       if (y === null) {
         return;
       }
@@ -109,10 +116,10 @@ function handleClick(evt) {
         return endGame(`&#128515;	Player ${currPlayer} won! &#128515;`);}
 
       if (checkForTie()) { // check if all cells in board are filled; if so call endGame
-          endGame("THE GAME IS OVER! <br> NO WINNERS THIS TIME 	&#128521;");
+          return endGame("THE GAME IS OVER! <br> NO WINNERS THIS TIME 	&#128521;");
       } else {
-          (currPlayer === 1) ? currPlayer = 2 : currPlayer = 1; // switch players
-          } 
+        switchPlayers();
+        } 
 
         
     }
@@ -151,10 +158,10 @@ function checkForWin() {
 function startNewGame(){
   // check UI input values for width and height
   const widthUI = document.getElementById("width");
-  if (widthUI.value === "") {WIDTH = 7;} //if input incorrect width = 7 by default
+  if (widthUI.value === "") {WIDTH = 7;} //if input incorrect, width = 7 by default
     else {WIDTH = widthUI.value;}
   const heightUI = document.getElementById("height");
-  if (heightUI.value === "") {HEIGHT = 6;} //if input incorrect width = 7 by default
+  if (heightUI.value === "") {HEIGHT = 6;} //if input incorrect, height = 6 by default
     else {HEIGHT = heightUI.value;}
   board = makeBoard();
   makeHtmlBoard();
