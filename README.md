@@ -12,4 +12,4 @@ HTML, CSS, JavaScript
 
 https://tetyana-i.github.io/ConnectFour/
 
-![screen image](https://raw.githubusercontent.com/Tetyana-I/connect-four/main/connect4.PNG)
+    ![screen image](https://raw.githubusercontent.com/Tetyana-I/ConnectFour/main/connect4.PNG)
